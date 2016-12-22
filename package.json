@@ -1,0 +1,25 @@
+{
+  "name": "rs-position-tracker",
+  "version": "1.0.0",
+  "description": "Ais Vessel Tracker ",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha --recursive"
+  },
+  "keywords": [
+    "ais"
+  ],
+  "author": "Bernt Anker",
+  "license": "MIT",
+  "devDependencies": {
+    "install": "^0.8.2",
+    "mocha": "^3.2.0",
+    "mockgoose": "^6.0.8",
+    "nodemon": "^1.11.0"
+  },
+  "dependencies": {
+    "chalk": "^1.1.3",
+    "mongoose": "^4.7.3",
+    "node-fetch": "^1.6.3"
+  }
+}
