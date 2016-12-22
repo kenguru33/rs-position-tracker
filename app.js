@@ -1,20 +1,49 @@
 let Ais = require('./lib/ais');
-config = require('./config');
-const mongoose = require("mongoose");
+let config = require('./config');
+const winston = require('winston');
+let mongoose = require('mongoose');
 
 mongoose.Promise = global.Promise;
-mongoose.connect(config.dbUri, { server: { reconnectTries: Number.MAX_VALUE } }).then(()=>{
-    console.log("Connected to database.");
-}).catch((eroor)=>{
-    console.log("Connection to database failed.");
+
+let db = mongoose.connection;
+db.on('connecting', function() {
+    winston.info('MongoDB: connecting');
 });
 
-ais = new Ais();
-let importData = function () {
-   ais.fetchAisData(config.aisDataUrl)
-       .then(aisData => {ais.storeAisData(aisData);})
-       .catch(error =>{console.log(error);});
+db.on('error', function(error) {
+    winston.error('Error in MongoDb connection: ' + error);
+    winston.debug(error);
+    mongoose.disconnect();
+});
+db.on('connected', function() {
+    winston.info('MongoDB: connected!');
+});
+db.once('open', function() {
+    console.info('MongoDB: connection open');
+});
+db.on('reconnected', function () {
+    console.info('MongoDB: reconnected');
+});
+db.on('disconnected', function() {
+    console.info('MongoDB: disconnected');
+    setTimeout(()=>{
+        mongoose.connect(config.dbURI, config.dbOptions);
+    },1000);
+});
+
+winston.info("Starting service...");
+mongoose.connect(config.dbURI, config.dbOptions);
+
+let init = function () {
+    let ais = new Ais();
+    let importData = function () {
+        ais.fetchAisData(config.aisDataUrl)
+            .then(aisData => {ais.storeAisData(aisData);})
+            .catch(error =>{winston.error(`Fetching ais data from ${config.aisDataUrl} failed!`)});
+    };
+    setInterval(importData,config.fetchDataInterval);
 };
-setInterval(importData,config.fetchDataInterval);
+
+init();
 
 
