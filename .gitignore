@@ -1,4 +1,5 @@
 config.js
 .idea/workspace.xml
 node_modules
+app.log
 node_modules/nested-error-stacks/README.md~
