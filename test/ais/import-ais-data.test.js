@@ -1,6 +1,6 @@
 let importAisData = require("../../lib/ais/fetch-ais-data");
 let assert = require("assert");
-let AisPosition = require("../../lib/ais/models/ais-position");
+let AisPosition = require(".././ais-position");
 let db = require("./helper");
 let mongoose = require("mongoose");
 

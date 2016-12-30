@@ -1,5 +1,5 @@
 let addAisPosition = require("../../lib/ais/rubish/add-ais-position");
-let AisPosition = require("../../lib/ais/models/ais-position");
+let AisPosition = require(".././ais-position");
 let assert = require("assert");
 let db = require("./helper");
 
