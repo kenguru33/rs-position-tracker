@@ -15,7 +15,7 @@ after(()=>{
 let url  = "http://ais.rs.no/aktive_pos.json";
 
 describe("import ais data", ()=>{
-   it("returns an array of valid ais-position", ()=>{
+   xit("returns an array of valid ais-position", ()=>{
         return importAisData(url).then(aisData=>{
            assert.ok(aisData.length>0,"No Ais Data imported");
            for (let pos of aisData) {
@@ -28,7 +28,7 @@ describe("import ais data", ()=>{
         });
    });
 
-   it("finds dulicates and removes them from import array", ()=>{
+   xit("finds dulicates and removes them from import array", ()=>{
 
 
        return AisPosition.find({}).then(aisPositions=>{

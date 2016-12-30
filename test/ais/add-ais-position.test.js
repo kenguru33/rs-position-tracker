@@ -13,7 +13,7 @@ after(()=>{
 
 
 describe("add-ais-position", ()=>{
-    it("add a single ais postion", ()=>{
+    xit("add a single ais postion", ()=>{
         return addAisPosition(new AisPosition({MMSI:9999}));
     });
 });

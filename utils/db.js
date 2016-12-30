@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
 let config = require('../config');
-let logger = require("./logger");
+let logger = require("./../lib/logger/index");
 
 mongoose.Promise = global.Promise;
 
