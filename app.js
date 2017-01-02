@@ -13,7 +13,7 @@ let init = function () {
 
         ais.repository.getAisPositions("2016-12-29T09:58:00", "2017-01-02T23:00:00",258144000)
         //.then(aisData=>removeAisPositions(aisData))
-            .then(aisData=>console.log(aisData,ais.repository.getDistance(aisData)))
+            .then(aisData=>console.log("distanse: ",ais.repository.getDistance(aisData) + " " + aisData.length))
             .catch(error=>logger.error(error));
     };
 
