@@ -33,6 +33,10 @@ console.log(chalk.green("Ais Import Service started with fetch interval=" +confi
  */
 let app = express();
 
+app.get('/', function (req, res) {
+   res.send("ais API - Bernt Anker (Redningsselskapet) <bernt.anker@rs.no>");
+});
+
 /**
  * Gets ais positions for vessel in time interval.
  */
