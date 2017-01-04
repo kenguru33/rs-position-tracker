@@ -83,3 +83,5 @@ app.listen(process.env.PORT, function () {
  //.then(aisData=>removeAisPositions(aisData))
  .then(aisData=>console.log("distanse: ",ais.repository.getDistance(aisData) + " " + aisData.length))
  .catch(error=>logger.error(error.stack));*/
+
+//http://aistracker.herokuapp.com/positions/259460000/2017-01-02T09:45:00/2017-01-04T10:00:00
