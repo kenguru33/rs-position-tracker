@@ -80,7 +80,7 @@ app.get('/distance/:mmsi/:fromTime/:toTime', function (req, res) {
 });
 
 app.listen(process.env.PORT, function () {
-    console.log(chalk.green("Web Service started on port 3000"));
+    console.log(chalk.green(`Web Service started on port ${process.env.PORT}`));
 });
 
 
