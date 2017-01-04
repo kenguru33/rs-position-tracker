@@ -14,11 +14,6 @@ let importData = function () {
             .then(data => logger.debug(`All new ais positions written to database. (${data.length})`))
         )
         .catch(error =>{logger.error(`Fetching ais data from ${process.env.AIS_DATA_URL} failed! ${error}`)});
-
-    /*ais.repository.getAisPositions("2016-12-29T09:58:00", "2017-01-04T23:00:00",257013400)
-     //.then(aisData=>removeAisPositions(aisData))
-     .then(aisData=>console.log("distanse: ",ais.repository.getDistance(aisData) + " " + aisData.length))
-     .catch(error=>logger.error(error.stack));*/
 };
 
 setInterval(importData,process.env.AIS_DATA_FETCH_INTERVAL);
@@ -84,3 +79,7 @@ app.listen(process.env.PORT, function () {
 });
 
 
+/*ais.repository.getAisPositions("2016-12-29T09:58:00", "2017-01-04T23:00:00",257013400)
+ //.then(aisData=>removeAisPositions(aisData))
+ .then(aisData=>console.log("distanse: ",ais.repository.getDistance(aisData) + " " + aisData.length))
+ .catch(error=>logger.error(error.stack));*/
