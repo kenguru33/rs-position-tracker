@@ -5,3 +5,4 @@ node_modules
 app.log
 node_modules/nested-error-stacks/README.md~
 .idea/inspectionProfiles/
+npm-debug.log
