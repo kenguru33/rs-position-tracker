@@ -5,7 +5,7 @@ let aisController = require('../controllers/aisController');
 
 const api = express.Router();
 
-api.get('/positions/:mmsi/:fromTime/:toTime', aisController.getPositions);
-api.get('/distance/:mmsi/:fromTime/:toTime', aisController.getDistance);
+api.get('/get_positions/:mmsi/:fromTime/:toTime', aisController.getPositions);
+api.get('/get_distance/:mmsi/:fromTime/:toTime', aisController.getDistance);
 
 module.exports = api;
