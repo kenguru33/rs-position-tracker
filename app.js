@@ -1,10 +1,9 @@
 require('dotenv').config();
-//let config = require('./config');
 let logger = require("./lib/logger");
 let ais = require('./lib/ais');
 const chalk = require('chalk');
 const express = require('express');
-
+const routes = require('./routes/routes');
 
 // init ais Import Service
 
@@ -23,56 +22,9 @@ console.log(chalk.green("Ais Import Service started."));
 
 // init express application
 
-/**
- * Serving ais position data. mmsi=* -> all vessels
- *
- */
 let app = express();
 
-app.get('/', function (req, res) {
-   res.send("ais API - Bernt Anker (Redningsselskapet) <bernt.anker@rs.no>");
-});
-
-/**
- * Gets ais positions for vessel in time interval.
- */
-app.get('/positions/:mmsi/:fromTime/:toTime', function (req, res) {
-
-    if (req.params.mmsi=='*') {
-        req.params.mmsi = null;
-    }
-
-    ais.repository.getAisPositions(req.params.fromTime,req.params.toTime,req.params.mmsi)
-        .then(aisData => {
-            res.send(aisData);
-        })
-        .catch(error=>{
-            logger.error(error.stack);
-            res.send(JSON.stringify(error.message));
-        });
-});
-
-app.get('/distance/:mmsi/:fromTime/:toTime', function (req, res) {
-
-    ais.repository.getAisPositions(req.params.fromTime, req.params.toTime, req.params.mmsi)
-     .then(aisData=>{
-         distance = ais.repository.getDistance(aisData);
-
-         res.send({
-             MMSI: req.params.mmsi,
-             FromLocalTime: req.params.fromTime,
-             ToLocalTime: req.params.toTime,
-             PositionCount: aisData.length,
-             Distance_nm: distance*0.539956803,
-             Distance_km: distance
-         });
-
-     })
-     .catch(error=>{
-         logger.error(error.stack);
-         res.send(JSON.stringify(error.message));
-     });
-});
+routes(app);
 
 app.listen(process.env.PORT, function () {
     console.log(chalk.green(`Web Service started on port ${process.env.PORT}`));
