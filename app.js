@@ -3,7 +3,7 @@ let logger = require("./lib/logger");
 let ais = require('./lib/ais');
 const chalk = require('chalk');
 const express = require('express');
-const routes = require('./routes/routes');
+const apiRouter = require('./routes/api-router');
 
 // init ais Import Service
 
@@ -24,7 +24,9 @@ console.log(chalk.green("Ais Import Service started."));
 
 let app = express();
 
-routes(app);
+app.use("/api", apiRouter);
+
+app.use(express.static('public'));
 
 app.listen(process.env.PORT, function () {
     console.log(chalk.green(`Web Service started on port ${process.env.PORT}`));
