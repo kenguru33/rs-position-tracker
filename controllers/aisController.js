@@ -35,7 +35,7 @@ module.exports = {
                 logger.error(error.stack);
                 res.send(JSON.stringify(error.message));
             });
-    }
+    },
 
 };
 
