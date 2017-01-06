@@ -37,5 +37,8 @@ module.exports = {
             });
     },
 
+    getMovingVessels(res,req) {
+
+    }
 };
 
