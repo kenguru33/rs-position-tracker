@@ -2,6 +2,7 @@ require('dotenv').config();
 let logger = require("./lib/logger");
 let ais = require('./lib/ais');
 const chalk = require('chalk');
+const cors = require('cors');
 const express = require('express');
 const apiRouter = require('./routes/api-router');
 
@@ -23,6 +24,9 @@ console.log(chalk.green("Ais Import Service started."));
 // init express application
 
 let app = express();
+
+//app.options('*', cors());
+app.use(cors());
 
 app.use("/api", apiRouter);
 
