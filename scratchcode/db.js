@@ -1,9 +1,7 @@
 let mongoose = require('mongoose');
-let logger = require("./../../../logger/index");
+let logger = require("./../lib/logger/index");
 
 mongoose.Promise = global.Promise;
-
-let closeConnection = false;
 
 let connection = mongoose.createConnection(process.env.DB_URI, { server: { reconnectTries: Number.MAX_VALUE } });
 

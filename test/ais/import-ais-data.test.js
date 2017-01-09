@@ -1,15 +1,14 @@
 let importAisData = require("../../lib/ais/fetch-ais-data");
 let assert = require("assert");
 let AisPosition = require(".././ais-position");
-let db = require("./helper");
 let mongoose = require("mongoose");
 
 before(()=>{
-    db.connect();
+    mongoose.connect('mongodb uri here')
 });
 
 after(()=>{
-    db.diconnect();
+    mongoose.disconnect();
 });
 
 let url  = "http://ais.rs.no/aktive_pos.json";
