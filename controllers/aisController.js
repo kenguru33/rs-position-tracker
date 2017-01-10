@@ -35,6 +35,33 @@ module.exports = {
                 logger.error(error.stack);
                 res.send(JSON.stringify(error.message));
             });
+    },
+
+    // Time To Go
+    getTTG(req, res) {
+        console.log('controller hit!');
+        ais.repository.getAisTTG(req.params.mmsi, req.params.latitude, req.params.longitude)
+            .then(timeToGo=>{
+                res.send(timeToGo);
+            })
+            .catch(error=>{
+               console.log(error);
+               res.send(JSON.stringify(error.message));
+            });
+    },
+
+    // Estimated Time of Arrival
+    getETA(req, res) {
+        res.send('Time On Arrival not implemented')
+    },
+
+    // Estimated Time on Arrival
+    getLastPosition(req, res) {
+        ais.repository.getLastPosition(req.params.mmsi)
+            .then(aisPosition=>{
+                res.send(aisPosition);
+            })
+            .catch(error=>res.send(error));
     }
 };
 
