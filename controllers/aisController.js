@@ -39,7 +39,6 @@ module.exports = {
 
     // Time To Go
     getTTG(req, res) {
-        console.log('controller hit!');
         ais.repository.getAisTTG(req.params.mmsi, req.params.latitude, req.params.longitude)
             .then(timeToGo=>{
                 res.send(timeToGo);
