@@ -54,7 +54,6 @@ module.exports = {
         res.send('Time On Arrival not implemented')
     },
 
-    // Estimated Time on Arrival
     getLastPosition(req, res) {
         ais.repository.getLastPosition(req.params.mmsi)
             .then(aisPosition=>{
