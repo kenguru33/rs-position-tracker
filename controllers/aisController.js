@@ -23,8 +23,8 @@ module.exports = {
 
                 res.send({
                     MMSI: req.params.mmsi,
-                    FromLocalTime: req.params.fromTime,
-                    ToLocalTime: req.params.toTime,
+                    FromZuluTime: req.params.fromTime,
+                    ToZuluTime: req.params.toTime,
                     PositionCount: aisData.length,
                     Distance_nm: distance*0.539956803,
                     Distance_km: distance
