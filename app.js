@@ -6,6 +6,7 @@ const cors = require('cors');
 const express = require('express');
 const apiRouter = require('./routes/api-router');
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 
 
@@ -42,6 +43,7 @@ let importData = function () {
 };
 
 setInterval(importData,process.env.AIS_DATA_FETCH_INTERVAL);
+
 
 console.log(chalk.green("Ais Import Service started."));
 
