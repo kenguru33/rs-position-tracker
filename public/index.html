@@ -15,15 +15,18 @@
     <p>get_vessel - fartøysinfo med rsid=id</p>
     <p>get_station - stasjonsinfo med name=stasjonsnavn</p>
     <p>get_TTG - time to go for en gitt mmsi og målposisjon</p>
+    <p>get_last_position - siste posisjon for fartøy med mmsi=id </p>
     <br>
     <hr>
     <h4>Eksempler</h4>
     <h5>Posisjoner</h5>
-    <p>http://aistracker.rs.no/api/get_positions/259460000/2017-01-03T09:45:00z/2017-01-04T23:00:00z</p>
+    <p>http://aistracker.rs.no/api/get_positions/259460000/2017-01-03T09:45:00/2017-01-04T23:00:00</p>
     <h5>Distanse</h5>
-    <p>http://aistracker.rs.no/api/get_distance/259460000/2017-01-03T09:45:00z/2017-01-04T23:00:00z</p>
+    <p>http://aistracker.rs.no/api/get_distance/259460000/2017-01-03T09:45:00/2017-01-04T23:00:00</p>
     <h5>Fartøy i bevegelse</h5>
     <p>http://aistracker.rs.no/api/get_moving_vessels</p>
+    <h5>Siste posisjon innrapporte posisjon</h5>
+    <p>http://aistracker.rs.no/api/get_last_position/259460000</p>
     <h5>Fartøy</h5>
     <p>http://aistracker.rs.no/api/get_vessel/126</p>
     <h5>Stasjon</h5>
