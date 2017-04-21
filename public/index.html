@@ -9,13 +9,22 @@
     <h6>api av Bernt Anker - Redningsselskapet 2017</h6>
     <hr>
     <h4>Metoder</h4>
-    <p>get_positions - alle posisjonen for en gitt tidperiode med mmsi=id</p>
-    <p>get_distance - distanse for en gitt tidsperiode med mmsi=id</p>
-    <p>get_moving_vessels - lister opp fartøy i bevegelse</p>
-    <p>get_vessel - fartøysinfo med rsid=id</p>
-    <p>get_station - stasjonsinfo med name=stasjonsnavn</p>
-    <p>get_TTG - time to go for en gitt mmsi og målposisjon</p>
-    <p>get_last_position - siste posisjon for fartøy med mmsi=id </p>
+    <p><b>get_positions</b> - alle posisjonen for en gitt tidperiode med mmsi=id</p>
+    <h6>/get_positions/:mmsi/:fromTime/:toTime</h6>
+    <p><b>get_distance</b> - distanse for en gitt tidsperiode med mmsi=id</p>
+    <h6>/get_distance/:mmsi/:fromTime/:toTime</h6>
+    <p><b>get_moving_vessels</b> - lister opp fartøy i bevegelse</p>
+    <h6>/get_moving_vessels</h6>
+    <p><b>get_vessel</b> - fartøysinfo med rsid=id</p>
+    <h6>/get_vessel/:rsid</h6>
+    <p><b>get_station</b> - stasjonsinfo med name=stasjonsnavn</p>
+    <h6>/get_station/:name</h6>
+    <p><b>get_TTG</b> - time to go for en gitt mmsi og målposisjon</p>
+    <h6>/get_TTG/:mmsi/:latitude/:longitude</h6>
+    <p><b>get_last_position</b> - siste posisjon for fartøy med mmsi=id</p>
+    <h6>/get_last_position/:mmsi</h6>
+    <p><b>get_position</b> - søk etter nærmeste posisjon innenfor et maks tidsspenn for et bestemt tidspunkt. (Tidspenn er valgfritt. Ved udefinert benyttes standardverdi satt i miljøparameter MAX_TIME_SPAN_IN_MINUTES)</p>
+    <h6>/get_position/:mmsi/:time/:mts?</h6>
     <br>
     <hr>
     <h4>Eksempler</h4>
@@ -33,5 +42,9 @@
     <p></a>http://aistracker.rs.no/api/get_station/Haugesund</p>
     <h5>Time To Go</h5>
     <p>http://aistracker.rs.no/api/get_TTG/259176000/62/5.3</p>
+    <h5>Siste posisjon for et fartøy</h5>
+    <p>http://aistracker.rs.no/api/259460000</p>
+    <h5>Posisjon for et gitt tidspunkt med maks tidsspenn på 20 minutter.</h5>
+    <p>http://aistracker.rs.no/api/get_position/259460000/2017-04-21T04:15:00/20</p>
 </body>
 </html>
