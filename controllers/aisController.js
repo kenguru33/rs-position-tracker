@@ -1,4 +1,5 @@
 let ais = require('../lib/ais');
+const logger = require('../lib/logger');
 
 module.exports = {
 
@@ -54,13 +55,20 @@ module.exports = {
         res.send('Time On Arrival not implemented')
     },
 
-    // Get last position
     getLastPosition(req, res) {
         ais.repository.getLastPosition(req.params.mmsi)
             .then(aisPosition=>{
                 res.send(aisPosition);
             })
             .catch(error=>res.send(error));
+    },
+
+    // Search for nearest position within a max time span for a specified time.
+    getPosition(req, res) {
+        ais.repository.getAisPosition(req.params.time, req.params.mmsi, req.params.mts)
+            .then(aisPosition => {
+                res.send(aisPosition);
+            })
     }
 };
 
