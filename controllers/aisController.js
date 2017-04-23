@@ -4,7 +4,7 @@ const logger = require('../lib/logger');
 module.exports = {
 
     getPositions(req,res) {
-        if (req.params.mmsi=='*') {
+        if (req.params.mmsi==='*') {
             req.params.mmsi = null;
         }
         ais.repository.getAisPositions(req.params.fromTime,req.params.toTime,req.params.mmsi)
@@ -65,7 +65,7 @@ module.exports = {
 
     // Search for nearest position within a max time span for a specified time.
     getPosition(req, res) {
-        ais.repository.getAisPosition(req.params.time, req.params.mmsi, req.params.mts)
+        ais.repository.getAisPosition(req.params.time, req.params.mmsi)
             .then(aisPosition => {
                 res.send(aisPosition);
             })

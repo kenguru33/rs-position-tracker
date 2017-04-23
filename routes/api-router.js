@@ -14,5 +14,5 @@ api.get('/get_station/:name', stationController.getStation);
 api.get('/get_TTG/:mmsi/:latitude/:longitude', aisController.getTTG);
 api.get('/get_ETA/:latitude/:longitude', aisController.getETA);
 api.get('/get_last_position/:mmsi', aisController.getLastPosition);
-api.get('/get_position/:mmsi/:time/:mts?', aisController.getPosition);
+api.get('/get_position/:mmsi/:time', aisController.getPosition);
 module.exports = api;
