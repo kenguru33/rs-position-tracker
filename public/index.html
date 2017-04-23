@@ -23,8 +23,8 @@
     <h6>/get_TTG/:mmsi/:latitude/:longitude</h6>
     <p><b>get_last_position</b> - siste posisjon for fartøy med mmsi=id</p>
     <h6>/get_last_position/:mmsi</h6>
-    <p><b>get_position</b> - søk etter nærmeste posisjon innenfor et maks tidsspenn for et bestemt tidspunkt. (Tidspenn er valgfritt. Ved udefinert benyttes standardverdi satt i miljøparameter MAX_TIME_SPAN_IN_MINUTES)</p>
-    <h6>/get_position/:mmsi/:time/:mts?</h6>
+    <p><b>get_position</b> - søk etter nærmeste posisjon innenfor et maks tidsvindu for et bestemt tidspunkt (standard 20 min.) Kan endre tidsvindu med miljøparameter MAX_TIME_WINDOW_IN_MINUTES)</p>
+    <h6>/get_position/:mmsi/:time</h6>
     <br>
     <hr>
     <h4>Eksempler</h4>
@@ -45,6 +45,6 @@
     <h5>Siste posisjon for et fartøy</h5>
     <p>http://aistracker.rs.no/api/259460000</p>
     <h5>Posisjon for et gitt tidspunkt med maks tidsspenn på 20 minutter.</h5>
-    <p>http://aistracker.rs.no/api/get_position/259460000/2017-04-21T04:15:00/20</p>
+    <p>http://aistracker.rs.no/api/get_position/259460000/2017-04-21T04:15:00</p>
 </body>
 </html>
