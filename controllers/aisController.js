@@ -1,8 +1,6 @@
 let ais = require('../lib/ais');
 const logger = require('../lib/logger');
 
-//TODO: controller code is to fat, refactor it to applicaton services.
-
 module.exports = {
 
     getPositions(req,res) {
