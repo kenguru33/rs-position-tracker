@@ -1,4 +1,4 @@
-  {
+{
   "name": "rs-position-tracker",
   "version": "1.0.0",
   "engines": {
@@ -31,6 +31,7 @@
     "moment": "^2.17.1",
     "mongoose": "^4.7.3",
     "node-fetch": "^1.6.3",
+    "validator": "^7.0.0",
     "winston": "^2.3.0",
     "xml2json": "^0.10.0"
   }
