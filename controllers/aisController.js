@@ -1,9 +1,20 @@
 let ais = require('../lib/ais');
 const logger = require('../lib/logger');
+const moment = require('moment');
 
 module.exports = {
 
     getPositions(req,res) {
+        if (!is_valid_timeSpan(req.params.fromTime,req.params.toTime)) {
+            res.status(400).send({error: 'from time is later than to time'});
+            return
+        }
+
+        if (!is_mmsi_valid(req.params.mmsi)) {
+            res.status(400).send({error: 'not an valid mmsi'});
+            return
+        }
+
         if (req.params.mmsi==='*') {
             req.params.mmsi = null;
         }
@@ -18,6 +29,16 @@ module.exports = {
     },
 
     getDistance(req,res) {
+        if (!is_valid_timeSpan(req.params.fromTime,req.params.toTime)) {
+            res.status(400).send({error: 'from time is later than to time'});
+            return
+        }
+
+        if (!is_mmsi_valid(req.params.mmsi)) {
+            res.status(400).send({error: 'not an valid mmsi'});
+            return
+        }
+
         ais.repository.getAisPositions(req.params.fromTime, req.params.toTime, req.params.mmsi)
             .then(aisData=>{
                 distance = ais.repository.getDistance(aisData);
@@ -40,6 +61,16 @@ module.exports = {
 
     // Time To Go
     getTTG(req, res) {
+        if (!is_valid_gps_coord(req.params.latitude, req.params.longitude)) {
+            res.status(400).send({error: 'gps coords not valid'});
+            return
+        }
+
+        if (!is_mmsi_valid(req.params.mmsi)) {
+            res.status(400).send({error: 'not an valid mmsi'});
+            return
+        }
+
         ais.repository.getAisTTG(req.params.mmsi, req.params.latitude, req.params.longitude)
             .then(timeToGo=>{
                 res.send(timeToGo);
@@ -52,10 +83,15 @@ module.exports = {
 
     // Estimated Time of Arrival
     getETA(req, res) {
-        res.send('Time On Arrival not implemented')
+        res.status(501).send('Time On Arrival not implemented');
+        return
     },
 
     getLastPosition(req, res) {
+        if (!is_mmsi_valid(req.params.mmsi)) {
+            res.status(400).send({error: 'not an valid mmsi'});
+            return
+        }
         ais.repository.getLastPosition(req.params.mmsi)
             .then(aisPosition=>{
                 res.send(aisPosition);
@@ -65,10 +101,40 @@ module.exports = {
 
     // Search for nearest position within a max time span for a specified time.
     getPosition(req, res) {
+        if (!is_valid_timeSpan(req.params.time,moment.utc())) {
+            res.status(422).send({error: 'date set in the future'});
+            return;
+        }
+
+        if (!is_mmsi_valid(req.params.mmsi)) {
+            res.status(400).send({error: 'not an valid mmsi'});
+            return
+        }
+
         ais.repository.getAisPosition(req.params.time, req.params.mmsi)
             .then(aisPosition => {
+                if (!aisPosition) {
+                    res.status(404).send({error: 'No position found'});
+                }
                 res.send(aisPosition);
             })
+            .catch(error=>{
+                res.send(JSON.stringify(error.message));
+        });
     }
 };
 
+const is_mmsi_valid = function(mmsi) {
+    return /^[0-9]{9}$/.test(mmsi);
+};
+
+//TODO: Time compare
+const is_valid_timeSpan = function(fromTime, toTime) {
+    let t1 = moment().utc().unix(fromTime);
+    let t2 = moment().utc().unix(toTime);
+    return (t1>t2);
+};
+
+const is_valid_gps_coord = function(lat,lng) {
+    return lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
+};
