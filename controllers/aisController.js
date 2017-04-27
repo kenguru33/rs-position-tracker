@@ -2,6 +2,18 @@ let ais = require('../lib/ais');
 const logger = require('../lib/logger');
 const moment = require('moment');
 
+const is_mmsi_valid = function(mmsi) {
+    return /^[0-9]{9}$/.test(mmsi);
+};
+
+const is_valid_timeSpan = function(fromTime, toTime) {
+    return moment(fromTime).isBefore(toTime);
+};
+
+const is_valid_gps_coord = function(lat,lng) {
+    return lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
+};
+
 module.exports = {
 
     getPositions(req,res) {
@@ -124,18 +136,6 @@ module.exports = {
     }
 };
 
-const is_mmsi_valid = function(mmsi) {
-    return /^[0-9]{9}$/.test(mmsi);
-};
-
-const is_valid_timeSpan = function(fromTime, toTime) {
-    return moment(fromTime).isBefore(toTime);
-    return true;
-};
-
-const is_valid_gps_coord = function(lat,lng) {
-    return lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
-};
 
 
 
