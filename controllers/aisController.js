@@ -128,13 +128,13 @@ const is_mmsi_valid = function(mmsi) {
     return /^[0-9]{9}$/.test(mmsi);
 };
 
-//TODO: Time compare
 const is_valid_timeSpan = function(fromTime, toTime) {
-    let t1 = moment().utc().unix(fromTime);
-    let t2 = moment().utc().unix(toTime);
-    return (t1>t2);
+    return moment(fromTime).isBefore(toTime);
 };
 
 const is_valid_gps_coord = function(lat,lng) {
     return lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
-};
+}
+
+
+
