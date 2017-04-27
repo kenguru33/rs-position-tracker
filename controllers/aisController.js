@@ -134,7 +134,7 @@ const is_valid_timeSpan = function(fromTime, toTime) {
 
 const is_valid_gps_coord = function(lat,lng) {
     return lat >= -90 && lat <= 90 && lng >= -180 && lng <= 180;
-}
+};
 
 
 
