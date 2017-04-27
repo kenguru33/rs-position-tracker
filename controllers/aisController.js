@@ -129,7 +129,7 @@ const is_mmsi_valid = function(mmsi) {
 };
 
 const is_valid_timeSpan = function(fromTime, toTime) {
-    //return moment(fromTime).isBefore(toTime);
+    return moment(fromTime).isBefore(toTime);
     return true;
 };
 
