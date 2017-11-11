@@ -8,8 +8,6 @@ const apiRouter = require('./routes/api-router');
 const mongoose = require('mongoose');
 const moment = require('moment');
 
-
-
 // init mongoose default connection
 mongoose.Promise = global.Promise;
 
@@ -31,8 +29,6 @@ process.on('SIGINT', function() {
     });
 });
 
-
-
 // init ais Import Service
 let importData = function () {
     ais.fetchAisData(process.env.AIS_DATA_URL)
@@ -44,10 +40,7 @@ let importData = function () {
 
 setInterval(importData,process.env.AIS_DATA_FETCH_INTERVAL);
 
-
 console.log(chalk.green("Ais Import Service started."));
-
-
 
 // init express application
 let app = express();
