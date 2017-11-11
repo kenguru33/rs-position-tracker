@@ -2,7 +2,7 @@
   "name": "rs-position-tracker",
   "version": "1.0.0",
   "engines": {  
-    "node": "8.9.0"  
+    "node": "8.x.x"  
   }, 
   "description": "Ais Vessel Tracker ",
   "main": "app.js",
