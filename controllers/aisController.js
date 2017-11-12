@@ -96,7 +96,6 @@ module.exports = {
     // Estimated Time of Arrival
     getETA(req, res) {
         res.status(501).send('Time On Arrival not implemented');
-        return
     },
 
     getLastPosition(req, res) {
