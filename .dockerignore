@@ -6,3 +6,4 @@ scratchcode
 .idea
 app.log
 .gitignore
+.env

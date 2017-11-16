@@ -1,4 +1,3 @@
-require('dotenv').config();
 let logger = require("./lib/logger");
 let ais = require('./lib/ais');
 const chalk = require('chalk');
@@ -7,6 +6,22 @@ const express = require('express');
 const apiRouter = require('./routes/api-router');
 const mongoose = require('mongoose');
 const moment = require('moment');
+
+process.env.AIS_DATA_STORED_IN_DAYS = process.env.AIS_DATA_STORED_IN_DAYS || 14;
+process.env.AIS_DATA_FETCH_INTERVAL = process.env.AIS_DATA_FETCH_INTERVAL || 10000;
+process.env.MAX_TIME_WINDOW_IN_MINUTES = process.env.MAX_TIME_WINDOW_IN_MINUTES || 40;
+process.env.PORT = process.env.PORT || 3000;
+process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'error';
+
+if (!process.env.DB_URI) {
+    console.error('error:', 'DB_URI is not set');
+    process.exit();
+}
+
+if (!process.env.AIS_DATA_URL) {
+    console.errir('error:', 'AIS_DATA_URL is not set');
+    process.exit();
+}
 
 // init mongoose default connection
 mongoose.Promise = global.Promise;
