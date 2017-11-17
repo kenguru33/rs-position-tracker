@@ -38,21 +38,26 @@ let importData = function () {
         .catch(error =>{logger.error(`Fetching ais data from ${process.env.AIS_DATA_URL} failed! ${error}`)});
 };
 
-setInterval(importData,process.env.AIS_DATA_FETCH_INTERVAL);
-
-console.log(chalk.green("Ais Import Service started."));
+// start ais Import Service
+if (process.env.ENABLE_AIS_FETCHER ==='true') {
+    setInterval(importData,process.env.AIS_DATA_FETCH_INTERVAL);
+    console.log(chalk.green("Ais Import Service started."));
+}
 
 // init express application
-let app = express();
+if (process.env.ENABLE_API) {
+    let app = express();
 
-//app.options('*', cors());
-app.use(cors());
+    //app.options('*', cors());
+    app.use(cors());
 
-app.use("/api", apiRouter);
+    app.use("/api", apiRouter);
 
-app.use(express.static('public'));
+    app.use(express.static('public'));
 
-app.listen(process.env.PORT, function () {
-    console.log(chalk.green(`Web Service started on port ${process.env.PORT}.`));
-});
+    app.listen(process.env.PORT, function () {
+        console.log(chalk.green(`Web API Service started on port ${process.env.PORT}.`));
+    });
+}
+
 
