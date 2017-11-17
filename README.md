@@ -1,11 +1,31 @@
-# Dev setup
+## OPTIONAL ENVIROMENTS VARIABLES: 
 
-- git https://github.com/kenguru33/rs-position-tracker.git
-- cd rs-position-tracker
-- npm install
-- cp .env-example .env
-Edit .env according to your needs. At a minimum change the DB_URI to point to your mongo database.
+AIS_DATA_STORED_IN_DAYS  (default: 14)
+AIS_DATA_FETCH_INTERVAL (default: 10000)
+MAX_TIME_WINDOW_IN_MINUTES (default: 40)
+PORT (default: 3000)
+LOG_LEVEL (default: error)
 
--- Note: on Windows you need to build-tools to be able to install node-gyp first
-- npm install --global --production windows-build-tools
+Specify at least one:
+ENABLE_AIS_FETCHER (default: false)
+ENABLE_API (default: false)
 
+
+## MANDATORY ENVRONMENTS VARIABLES
+
+AIS_DATA_URL (default: <not set>)
+DB_URI (default: <not set>)
+
+
+## Examples:
+
+docker run kenguru33/rs-position-tracker -e DB_URI=mongodb://mongodb/mydb -e AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
+
+
+### docker-compose example:
+
+## dev setup
+TODO: example deploy with mongodb 
+
+## prod setup
+TODO: exmaple deploy with mongodb, haproxy.
