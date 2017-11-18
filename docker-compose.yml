@@ -1,0 +1,48 @@
+version: '3'
+services: 
+  ais-fetcher-kystverket1-service:
+    image: kenguru33/rs-position-tracker
+    networks: 
+      - aisnet-backend
+    environment:
+      - ENABLE_AIS_FETCHER=true
+      - AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
+      - DB_URI=mongodb://mongodb-service-1/rsbase
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+
+  ais-api:
+    image: kenguru33/rs-position-tracker
+    networks: 
+      - aisnet-backend
+    ports: 
+      - 80:3000  
+    environment:
+      - ENABLE_API=true
+      - DB_URI=mongodb://mongodb-service-1/rsbase
+    deploy:
+      replicas: 1 
+      restart_policy:
+        condition: on-failure
+  
+  mongodb-service-1:
+    labels:
+      - mongodb-service-1
+    image: mongo
+    networks: 
+      - aisnet-backend
+    volumes: 
+      - db-data:/data/db
+      - db-config:/data/configdb
+    deploy:
+      replicas: 1
+      restart_policy:
+        condition: on-failure
+networks:
+  aisnet-backend:
+
+volumes:
+  db-data:
+  db-config:
