@@ -18,10 +18,9 @@ Specify at least one:
 
 
 ## Examples:
-
-``docker run kenguru33/rs-position-tracker -e DB_URI=mongodb://mongodb/mydb -e AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
-
-
+```
+docker run kenguru33/rs-position-tracker -e DB_URI=mongodb://mongodb/mydb -e AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
+```
 ### docker-compose example:
 
 ### dev setup:

@@ -11,10 +11,7 @@ if (!process.env.DB_URI) {
   process.exit();
 }
 
-if (process.env.ENABLE_AIS_FETCHER === 'true') {
-  if (!process.env.AIS_DATA_URL) {
-    console.error('error:', 'AIS_DATA_URL is not set');
-    process.exit();
-}
-
+if (!process.env.AIS_DATA_URL) {
+  console.error('error:', 'AIS_DATA_URL is not set');
+  process.exit();
 }

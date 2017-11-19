@@ -1,7 +1,6 @@
 FROM node:carbon-alpine
-MAINTAINER Bernt Anker
-COPY . /src
-WORKDIR /src
+COPY . /app
+WORKDIR /app
 RUN apk add --no-cache --virtual .gyp \
         python \
         make \
@@ -9,4 +8,4 @@ RUN apk add --no-cache --virtual .gyp \
     && npm install \
     && apk del .gyp
 EXPOSE 80
-ENTRYPOINT [ "node", "./app.js" ]
+ENTRYPOINT [ "node", "./src/app.js" ]

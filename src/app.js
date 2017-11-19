@@ -1,4 +1,5 @@
-require('./config'); // load this first.
+require('dotenv').config({silent: true});
+require('./config');
 let logger = require("./lib/logger");
 let ais = require('./lib/ais');
 const chalk = require('chalk');
@@ -7,8 +8,10 @@ const express = require('express');
 const apiRouter = require('./routes/api-router');
 const mongoose = require('mongoose');
 const moment = require('moment');
+const morgan = require('morgan');
 
 // init mongoose default connection
+// TODO: Let docker handle restarting app on db connetion error
 mongoose.Promise = global.Promise;
 
 mongoose.connect(process.env.DB_URI, { server: { reconnectTries: Number.MAX_VALUE } });
@@ -50,10 +53,13 @@ if (process.env.ENABLE_API) {
 
     //app.options('*', cors());
     app.use(cors());
+    
+    app.use(morgan('combined'));
 
     app.use("/api", apiRouter);
 
-    app.use(express.static('public'));
+    app.use('/',express.static(__dirname + '/public'));
+
 
     app.listen(process.env.PORT, function () {
         console.log(chalk.green(`Web API Service started on port ${process.env.PORT}.`));
