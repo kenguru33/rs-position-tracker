@@ -51,7 +51,7 @@ if (process.env.ENABLE_AIS_FETCHER ==='true') {
 if (process.env.ENABLE_API) {
     let app = express();
 
-    //app.options('*', cors());
+    app.options('*', cors());
     app.use(cors());
     
     app.use(morgan('combined'));
