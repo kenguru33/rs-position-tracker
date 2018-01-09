@@ -1,10 +1,7 @@
-const ais = require('../../lib/ais');
-
+const ais = require('../../lib/ais')
 
 describe('aisController', () => {
-    describe('getAisPosition', () => {
-       it('returns position data for a given time interval', (done) => {
-
-       })
-    });
-});
+  describe('getAisPosition', () => {
+    it('returns position data for a given time interval', done => {})
+  })
+})

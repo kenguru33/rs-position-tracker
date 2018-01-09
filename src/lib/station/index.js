@@ -1,6 +1,5 @@
 let station = {
-    repository: require('./repository')
-};
+  repository: require('./repository')
+}
 
-module.exports = station;
-
+module.exports = station

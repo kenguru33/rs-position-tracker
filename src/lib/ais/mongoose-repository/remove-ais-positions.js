@@ -1,23 +1,28 @@
-let AisPosition = require('./models/ais-position');
-let logger = require('../../logger/index');
+let AisPosition = require('./models/ais-position')
+let logger = require('../../logger/index')
 
 /**
  * Removes all positions in input array from database.
  * @param jsonAisDataArray
  * @returns {Promise.<*>}
  */
-let removeAisPositions = function(jsonAisDataArray) {
+let removeAisPositions = function (jsonAisDataArray) {
+  let removeOperations = jsonAisDataArray.map(jsonAisPosition => {
+    return (
+      new AisPosition(jsonAisPosition)
+        .remove()
+        .then(aisData =>
+          logger.info(
+            'REMOVE',
+            `MMSI:${aisData.MMSI} Time_stamp:${aisData.Time_stamp}`
+          )
+        )
+        // put a catch block here to prevent promise.all to fail on error.
+        .catch(error => logger.error('REMOVE', error))
+    )
+  })
 
-    let removeOperations = jsonAisDataArray.map(jsonAisPosition => {
+  return Promise.all(removeOperations)
+}
 
-        return new AisPosition(jsonAisPosition).remove()
-           .then(aisData=> logger.info('REMOVE', `MMSI:${aisData.MMSI} Time_stamp:${aisData.Time_stamp}`))
-           // put a catch block here to prevent promise.all to fail on error.
-           .catch(error=>logger.error('REMOVE',error));
-    });
-
-    return Promise.all(removeOperations);
-
-};
-
-module.exports = removeAisPositions;
+module.exports = removeAisPositions

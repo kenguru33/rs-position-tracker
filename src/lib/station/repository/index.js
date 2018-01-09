@@ -1,5 +1,5 @@
 const repository = {
-    getStation: require('./get-station'),
-};
+  getStation: require('./get-station')
+}
 
-module.exports = repository;
+module.exports = repository

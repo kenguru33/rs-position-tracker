@@ -1,6 +1,4 @@
-let AisPosition = require('./models/ais-position');
-let mongoose = require('mongoose');
-let moment = require('moment');
+let AisPosition = require('./models/ais-position')
 let logger = require('../../logger/index')
 
 /**
@@ -10,40 +8,35 @@ let logger = require('../../logger/index')
  * @param mmsi      - which vessel to fetch data for. Optional, if not passed, all vessel are fetched
  * @returns {Promise.<Array>} - returns an array of points
  */
-let getAisPosition = async (fromTime, toTime, mmsi) =>{
+let getAisPosition = async (fromTime, toTime, mmsi) => {
+  let aisPositions
 
-    let aisPositions;
+  let t1 = fromTime
+  let t2 = toTime
 
-    let t1 = fromTime;
-    let t2 = toTime;
-
-    try {
-        if (mmsi) {
-            aisPositions = await AisPosition.find(
-                {
-                    Time_stamp : { $gte : t1, $lte : t2 },
-                    MMSI : mmsi
-                }
-            );
-        } else {
-            aisPositions = await AisPosition.find(
-                {
-                    Time_stamp : { $gte : t1, $lte : t2 }
-                }
-            );
-        }
-    } catch (error) {
-        logger.error(error);
-        throw error;
+  try {
+    if (mmsi) {
+      aisPositions = await AisPosition.find({
+        Time_stamp: { $gte: t1, $lte: t2 },
+        MMSI: mmsi
+      })
+    } else {
+      aisPositions = await AisPosition.find({
+        Time_stamp: { $gte: t1, $lte: t2 }
+      })
     }
+  } catch (error) {
+    logger.error(error)
+    throw error
+  }
 
-    pureObjects = [];
+  const pureObjects = []
 
-    aisPositions.map(pos=>{
-        pureObjects.push(pos.toObject());
-    });
+  aisPositions.map(pos => {
+    pureObjects.push(pos.toObject())
+  })
 
-    return pureObjects;
-};
+  return pureObjects
+}
 
-module.exports = getAisPosition;
+module.exports = getAisPosition

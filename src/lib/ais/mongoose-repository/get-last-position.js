@@ -1,4 +1,4 @@
-const fetchAisData = require('../fetch-ais-data');
+const fetchAisData = require('../fetch-ais-data')
 
 /**
  * get the last reported position for an given mmsi
@@ -6,18 +6,16 @@ const fetchAisData = require('../fetch-ais-data');
  * @returns {Promise}
  */
 let getLastPosition = mmsi => {
-    return new Promise((resolve,reject)=>{
+  return new Promise((resolve, reject) => {
+    fetchAisData(process.env.AIS_DATA_URL)
+      .then(aisData => {
+        let pos = aisData.find(aisPosition => aisPosition.MMSI === mmsi)
+        resolve(pos)
+      })
+      .catch(error => {
+        reject(error)
+      })
+  })
+}
 
-        fetchAisData(process.env.AIS_DATA_URL)
-            .then(aisData => {
-                let pos = aisData.find(aisPosition => aisPosition.MMSI == mmsi);
-                resolve(pos);
-            })
-            .catch(error => {
-                reject(error);
-            })
-    });
-
-};
-
-module.exports = getLastPosition;
+module.exports = getLastPosition

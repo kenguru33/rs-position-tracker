@@ -1,6 +1,5 @@
 let vessel = {
-    repository: require('./repository')
-};
+  repository: require('./repository')
+}
 
-module.exports = vessel;
-
+module.exports = vessel

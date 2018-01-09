@@ -1,6 +1,6 @@
 let ais = {
-    repository: require('./mongoose-repository'),
-    fetchAisData: require('./fetch-ais-data')
-};
+  repository: require('./mongoose-repository'),
+  fetchAisData: require('./fetch-ais-data')
+}
 
-module.exports = ais;
+module.exports = ais

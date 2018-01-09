@@ -1,5 +1,5 @@
 const repository = {
-    getVessel: require('./get-vessel'),
-};
+  getVessel: require('./get-vessel')
+}
 
-module.exports = repository;
+module.exports = repository
