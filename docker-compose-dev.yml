@@ -1,0 +1,32 @@
+version: '3'
+services:
+  ais-api:
+    build: .
+    image: rs-position-tracker
+    networks: 
+      - aisnet-backend
+    ports: 
+      - 3000:3000  
+    environment:
+      - ENABLE_API=true
+      - ENABLE_AIS_FETCHER=true
+      - AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
+      - DB_URI=mongodb://mongodb-service/rsbase
+    volumes:
+      - ./src:/app/src
+    entrypoint: [ "npm", "run", "watch"]
+
+  mongodb-service:
+    image: mongo
+    networks: 
+      - aisnet-backend
+    volumes: 
+      - db-data:/data/db
+      - db-config:/data/configdb
+
+networks:
+  aisnet-backend:
+
+volumes:
+  db-data:
+  db-config:

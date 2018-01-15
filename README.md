@@ -27,7 +27,7 @@ docker run kenguru33/rs-position-tracker -e DB_URI=mongodb://mongodb/mydb -e AIS
 ### dev setup:
 
 ```
-docker-compose up --build
+docker-compose -f docker-compose-dev.yml up --build
 ```
 
 ### prod setup (swarm mode):
