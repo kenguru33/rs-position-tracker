@@ -11,7 +11,7 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 
 // init mongoose default connection
-// TODO: Let docker handle restarting app on db connetion error
+// TODO: Let docker handle restarting app on db connection error
 mongoose.Promise = global.Promise
 
 mongoose.connect(process.env.DB_URI, {

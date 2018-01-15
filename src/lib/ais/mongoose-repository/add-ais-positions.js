@@ -1,13 +1,13 @@
 const logger = require('../../logger/index')
-let AisPosition = require('./models/ais-position')
+const AisPosition = require('./models/ais-position')
 
 /**
  * Adds positions to database
  * @param jsonDataArray
  * @returns {Promise.<*>}
  */
-let addAisPositions = jsonDataArray => {
-  let storeOperations = jsonDataArray.map(jsonAisPosition => {
+const addAisPositions = jsonDataArray => {
+  const storeOperations = jsonDataArray.map(jsonAisPosition => {
     return (
       new AisPosition(jsonAisPosition)
         .save()
