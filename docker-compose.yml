@@ -8,7 +8,9 @@ services:
     environment:
       - ENABLE_AIS_FETCHER=true
       - AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
-      - DB_URI=mongodb://mongodb-service/rsbase
+      - DB_HOST=mongodb-service/rsbase
+      - DB_USER=""
+      - DB_PASSWORD=""
     deploy:
       replicas: 1
       restart_policy:
@@ -23,7 +25,9 @@ services:
     environment:
       - ENABLE_API=true
       - AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
-      - DB_URI=mongodb://mongodb-service/rsbase
+      - DB_HOST=mongodb-service/rsbase
+      - DB_USER=""
+      - DB_PASSWORD=""
     deploy:
       replicas: 1 
       restart_policy:

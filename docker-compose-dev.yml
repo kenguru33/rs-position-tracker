@@ -12,6 +12,9 @@ services:
       - ENABLE_AIS_FETCHER=true
       - AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
       - DB_URI=mongodb://mongodb-service/rsbase
+      - DB_HOST=mongodb-service/rsbase
+      - DB_USER=""
+      - DB_PASSWORD=""
     volumes:
       - ./src:/app/src
     entrypoint: [ "npm", "run", "watch"]
@@ -20,6 +23,8 @@ services:
     image: mongo
     networks: 
       - aisnet-backend
+    ports: 
+      - 27017:27017
     volumes: 
       - db-data:/data/db
       - db-config:/data/configdb

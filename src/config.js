@@ -5,9 +5,20 @@ process.env.PORT = process.env.PORT || 3000
 process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'error'
 process.env.ENABLE_AIS_FETCHER = process.env.ENABLE_AIS_FETCHER || 'false'
 process.env.ENABLE_API = process.env.ENABLE_API || 'false'
+process.env.DB_PORT = process.env.DB_PORT || 27017
 
-if (!process.env.DB_URI) {
-  console.error('error:', 'DB_URI is not set')
+if (!process.env.DB_HOST) {
+  console.error('error:', 'DB_HOST is not set')
+  process.exit()
+}
+
+if (!process.env.DB_PASSWORD) {
+  console.error('error:', 'DB_PASSWORD is not set')
+  process.exit()
+}
+
+if (!process.env.DB_USER) {
+  console.error('error:', 'DB_USER is not set')
   process.exit()
 }
 

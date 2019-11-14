@@ -24,7 +24,7 @@ mongoose.connection.on('connected', function () {
 
 mongoose.connection.on('error', () => {
   mongoose.connection.close()
-  mongoose.connection.open(process.env.DB_URI, {
+  mongoose.connection.open(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${DB_HOST}:${DB_PORT}`, {
     server: { reconnectTries: Number.MAX_VALUE }
   })
 })
