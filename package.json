@@ -30,6 +30,8 @@
     "mongoose": "^4.7.3",
     "morgan": "^1.9.0",
     "node-fetch": "^1.6.3",
+    "swagger-jsdoc": "^3.4.0",
+    "swagger-ui-express": "^4.1.2",
     "validator": "^7.0.0",
     "winston": "^2.3.0",
     "xml2json": "^0.10.0"
