@@ -5,11 +5,11 @@ const fetchAisData = require('../fetch-ais-data')
  * @param mmsi
  * @returns {Promise}
  */
-let getLastPosition = mmsi => {
+const getLastPosition = mmsi => {
   return new Promise((resolve, reject) => {
     fetchAisData(process.env.AIS_DATA_URL)
       .then(aisData => {
-        let pos = aisData.find(aisPosition => aisPosition.MMSI === mmsi)
+        const pos = aisData.find(aisPosition => aisPosition.MMSI === mmsi)
         resolve(pos)
       })
       .catch(error => {

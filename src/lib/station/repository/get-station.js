@@ -2,7 +2,7 @@
 const parser = require('xml2json')
 const fetch = require('node-fetch')
 
-let options = {
+const options = {
   object: true,
   reversible: false,
   coerce: false,
@@ -12,19 +12,19 @@ let options = {
 }
 
 // Fixme: Should be getting data from MDS.
-let getStation = function (name) {
+const getStation = function (name) {
   return new Promise((resolve, reject) => {
     fetch('https://www.redningsselskapet.no/systemsider/getstationsxml').then(
       res => {
         return res.text().then(xml => {
-          let jsonData = parser.toJson(xml, options)
+          const jsonData = parser.toJson(xml, options)
           if (jsonData) {
-            let stationsArray = jsonData.stations.station
+            const stationsArray = jsonData.stations.station
             if (name === '*') {
               resolve(stationsArray)
               return
             }
-            let station = stationsArray.find(
+            const station = stationsArray.find(
               station => station.name.toUpperCase() === name.toUpperCase()
             )
             if (station) {

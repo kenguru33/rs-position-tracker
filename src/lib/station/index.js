@@ -1,4 +1,4 @@
-let station = {
+const station = {
   repository: require('./repository')
 }
 

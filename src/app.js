@@ -11,37 +11,18 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 
 // init mongoose default connection
-// TODO: Let docker handle restarting app on db connection error
 mongoose.Promise = global.Promise
 
-mongoose.connect(process.env.DB_URI, {
-  server: { reconnectTries: Number.MAX_VALUE }
-})
-
-mongoose.connection.on('connected', function () {
-  console.log(chalk.green(`Mongoose default connection opened.`))
-})
-
-mongoose.connection.on('error', () => {
-  mongoose.connection.close()
-  mongoose.connection.open(`mongodb://${process.env.DB_USER}:${process.env.DB_PASSWORD}@${DB_HOST}:${DB_PORT}`, {
-    server: { reconnectTries: Number.MAX_VALUE }
-  })
-})
-
-process.on('SIGINT', function () {
-  mongoose.connection.close(function () {
-    console.log(
-      chalk.red(
-        'Mongoose default connection disconnected through app termination'
-      )
-    )
-    process.exit(0)
-  })
+mongoose.connect(process.env.DB_URI).then(conn => {
+  console.log(chalk.green('Connection to database established.'))
+}).catch(err => {
+  console.log(chalk.red(`Error: ${err.message}`))
+  console.log(chalk.red('Shutting down...'))
+  process.exit(1)
 })
 
 // init ais Import Service
-let importData = function () {
+const importData = function () {
   ais
     .fetchAisData(process.env.AIS_DATA_URL)
     .then(aisData =>
@@ -68,7 +49,7 @@ if (process.env.ENABLE_AIS_FETCHER === 'true') {
 
 // init express application
 if (process.env.ENABLE_API) {
-  let app = express()
+  const app = express()
 
   app.options('*', cors())
   app.use(cors())

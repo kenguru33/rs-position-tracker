@@ -1,12 +1,12 @@
-let distance = require('gps-distance')
+const distance = require('gps-distance')
 
 /**
  * returns the distance of an array of positions.
  * @param jsonAisPositions
  * @returns {number} (distance in km)
  */
-let getDistance = function (jsonAisPositions) {
-  let locations = []
+const getDistance = function (jsonAisPositions) {
+  const locations = []
 
   jsonAisPositions.map(aisPosition => {
     locations.push([

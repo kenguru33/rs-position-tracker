@@ -1,4 +1,4 @@
-let vessel = {
+const vessel = {
   repository: require('./repository')
 }
 

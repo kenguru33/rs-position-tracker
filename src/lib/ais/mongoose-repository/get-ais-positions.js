@@ -1,5 +1,5 @@
-let AisPosition = require('./models/ais-position')
-let logger = require('../../logger/index')
+const AisPosition = require('./models/ais-position')
+const logger = require('../../logger/index')
 
 /**
  *
@@ -8,11 +8,11 @@ let logger = require('../../logger/index')
  * @param mmsi      - which vessel to fetch data for. Optional, if not passed, all vessel are fetched
  * @returns {Promise.<Array>} - returns an array of points
  */
-let getAisPosition = async (fromTime, toTime, mmsi) => {
+const getAisPosition = async (fromTime, toTime, mmsi) => {
   let aisPositions
 
-  let t1 = fromTime
-  let t2 = toTime
+  const t1 = fromTime
+  const t2 = toTime
 
   try {
     if (mmsi) {

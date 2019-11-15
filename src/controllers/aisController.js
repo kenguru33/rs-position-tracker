@@ -1,4 +1,4 @@
-let ais = require('../lib/ais')
+const ais = require('../lib/ais')
 const logger = require('../lib/logger')
 const moment = require('moment')
 

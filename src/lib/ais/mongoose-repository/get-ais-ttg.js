@@ -9,8 +9,8 @@ const getDistance = require('./get-distance')
  * @param longitude
  * @returns {Promise}
  */
-let getAisTTG = (mmsi, latitude, longitude) => {
-  let targetAisPosition = {
+const getAisTTG = (mmsi, latitude, longitude) => {
+  const targetAisPosition = {
     Decimal_Latitude: latitude,
     Decimal_Longitude: longitude
   }
@@ -18,17 +18,17 @@ let getAisTTG = (mmsi, latitude, longitude) => {
   return new Promise((resolve, reject) => {
     getLastPosition(mmsi)
       .then(lastPos => {
-        let speed = lastPos.SOG * 1.852 // km/h
-        let distanceFromLastPos = getDistance([lastPos, targetAisPosition])
-        let timeLastPos = moment(lastPos.Time_stamp)
+        const speed = lastPos.SOG * 1.852 // km/h
+        const distanceFromLastPos = getDistance([lastPos, targetAisPosition])
+        const timeLastPos = moment(lastPos.Time_stamp)
           .utc()
           .unix()
-        let timeNow = moment().unix()
-        let timeCorrectionSeconds = timeNow - timeLastPos
-        let distanceCorrection = speed * (timeCorrectionSeconds / 3600)
-        let timeToTarget =
+        const timeNow = moment().unix()
+        const timeCorrectionSeconds = timeNow - timeLastPos
+        const distanceCorrection = speed * (timeCorrectionSeconds / 3600)
+        const timeToTarget =
           60 * (distanceFromLastPos - distanceCorrection) / speed
-        let timeAtArrival = moment()
+        const timeAtArrival = moment()
           .utc()
           .add(timeToTarget, 'minutes')
 

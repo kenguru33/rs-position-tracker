@@ -1,13 +1,13 @@
-let AisPosition = require('./models/ais-position')
-let logger = require('../../logger/index')
+const AisPosition = require('./models/ais-position')
+const logger = require('../../logger/index')
 
 /**
  * Removes all positions in input array from database.
  * @param jsonAisDataArray
  * @returns {Promise.<*>}
  */
-let removeAisPositions = function (jsonAisDataArray) {
-  let removeOperations = jsonAisDataArray.map(jsonAisPosition => {
+const removeAisPositions = function (jsonAisDataArray) {
+  const removeOperations = jsonAisDataArray.map(jsonAisPosition => {
     return (
       new AisPosition(jsonAisPosition)
         .remove()

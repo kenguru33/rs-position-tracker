@@ -8,4 +8,4 @@ RUN apk add --no-cache --virtual .gyp \
     && npm install \
     && apk del .gyp
 EXPOSE 80
-ENTRYPOINT [ "npm", "start"]
+CMD [ "node", "src/app.js" ]
