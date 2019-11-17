@@ -1,7 +1,6 @@
 const express = require('express')
 const aisController = require('../controllers/aisController')
 const vesselController = require('../controllers/vesselController.js')
-const stationController = require('../controllers/stationController.js')
 
 const api = express.Router()
 
@@ -197,9 +196,5 @@ api.get('/get_last_position/:mmsi', aisController.getLastPosition)
  *         description: Vessel position at a given time. Position is returned if found in defined timespan +/- from given time. (Timespan is set in app config)
  */
 api.get('/get_position/:mmsi/:time', aisController.getPosition)
-
-api.get('/get_ETA/:latitude/:longitude', aisController.getETA)
-api.get('/get_vessel/:rsid', vesselController.getVessel)
-api.get('/get_station/:name', stationController.getStation)
 
 module.exports = api

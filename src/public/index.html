@@ -3,81 +3,14 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>RS Ais Sporing</title>
+    <title>RS Position Tracker</title>
 </head>
-
 <body>
-    <h2>RS Ais Sporing - DEV 1.0.1</h2>
-    <h6>api av Bernt Anker - Redningsselskapet 2017</h6>
+    <h2>AIS Tracker API</h2>
+    <h6>Written by Bernt Anker - Redningsselskapet 2017</h6>
     <hr>
-    <h4>Metoder</h4>
     <p>
-        <b>get_positions</b> - alle posisjonen for en gitt tidsperiode med mmsi=id</p>
-    <h6>/get_positions/:mmsi/:fromTime/:toTime</h6>
-    <p>
-        <b>get_distance</b> - distanse for en gitt tidsperiode med mmsi=id</p>
-    <h6>/get_distance/:mmsi/:fromTime/:toTime</h6>
-    <p>
-        <b>get_moving_vessels</b> - lister opp fartøy i bevegelse</p>
-    <h6>/get_moving_vessels</h6>
-    <p>
-        <b>get_vessel</b> - fartøysinfo med rsid=id</p>
-    <h6>/get_vessel/:rsid</h6>
-    <p>
-        <b>get_station</b> - stasjonsinfo med name=stasjonsnavn</p>
-    <h6>/get_station/:name</h6>
-    <p>
-        <b>get_TTG</b> - time to go for en gitt mmsi og målposisjon</p>
-    <h6>/get_TTG/:mmsi/:latitude/:longitude</h6>
-    <p>
-        <b>get_last_position</b> - siste posisjon for fartøy med mmsi=id</p>
-    <h6>/get_last_position/:mmsi</h6>
-    <p>
-        <b>get_position</b> - søk etter nærmeste posisjon innenfor et maks tidsvindu for et bestemt tidspunkt (standard 20 min.)
-        Kan endre tidsvindu med miljøparameter MAX_TIME_WINDOW_IN_MINUTES)</p>
-    <h6>/get_position/:mmsi/:time</h6>
-    <br>
-    <hr>
-    <h4>Eksempler</h4>
-    <h5>Posisjoner</h5>
-    <p>
-        <a href="/api/get_positions/259460000/2017-01-03T09:45:00/2017-01-04T23:00:00">http://aistracker.rs.no/api/get_positions/259460000/2017-01-03T09:45:00/2017-01-04T23:00:00</a>/</p>
-    <h5>Distanse</h5>
-    <p>
-        <a href="/api/get_distance/259460000/2017-01-03T09:45:00/2017-01-04T23:00:00">http://aistracker.rs.no/api/get_distance/259460000/2017-01-03T09:45:00/2017-01-04T23:00:00</a>
-    </p>
-    <h5>Fartøy i bevegelse</h5>
-    <p>
-        <a href="/api/get_moving_vessels">http://aistracker.rs.no/api/get_moving_vessels</a>
-    </p>
-    <h5>Siste posisjon innrapporterte posisjon</h5>
-    <p>
-        <a href="/api/get_last_position/259460000">http://aistracker.rs.no/api/get_last_position/259460000</a>
-    </p>
-    <h5>Fartøy</h5>
-    <p>
-        <a href="/api/get_vessel/126">http://aistracker.rs.no/api/get_vessel/126</a>
-    </p>
-    <h5>Alle fartøy</h5>
-    <p>
-        <a href="/api/get_vessel/*">http://aistracker.rs.no/api/get_vessel/*</a>
-    </p>
-    <h5>Stasjon</h5>
-    <p></p>
-    <a href="/api/get_station/Haugesund">http://aistracker.rs.no/api/get_station/Haugesund</a>
-    </p>
-    <h5>Alle stasjoner</h5>
-    <p>
-        <a href="/api/get_station/*">http://aistracker.rs.no/api/get_station/*</a>
-    </p>
-    <h5>Time To Go</h5>
-    <p>
-        <a href="/api/get_TTG/259176000/62/5.3">http://aistracker.rs.no/api/get_TTG/259176000/62/5.3</a>
-    </p>
-    <h5>Posisjon for et gitt tidspunkt med maks tidsspenn på 20 minutter.</h5>
-    <p>
-        <a href="/api/get_position/259460000/2017-04-21T04:15:00">http://aistracker.rs.no/api/get_position/259460000/2017-04-21T04:15:00</a>
+        <a href="/api-docs">Documentation</a>
     </p>
 </body>
-
 </html>
