@@ -11,20 +11,23 @@ services:
       - ENABLE_API=true
       - ENABLE_AIS_FETCHER=true
       - AIS_DATA_URL=https://ais.rs.no/aktive_pos.json
-      - DB_URI=mongodb://mongodb-service/rsbase
-      - DB_HOST=mongodb-service/rsbase
-      - DB_USER=""
-      - DB_PASSWORD=""
+      - DB_HOST=mongodb-service
+      - DB_NAME=my_database
+      - DB_USER=my_user
+      - DB_PASSWORD=password123
     volumes:
       - ./src:/app/src
     restart: on-failure
-    command: [ "node_modules/nodemon/bin/nodemon.js", "src/app.js"]
+    #command: [ "node_modules/nodemon/bin/nodemon.js", "src/app.js"]
+    command: [ "node", "src/app.js"]
   mongodb-service:
     image: bitnami/mongodb
-    environment: 
-      - ALLOW_EMPTY_PASSWORD=yes
+    environment:
+      - MONGODB_ROOT_PASSWORD=xx1487yy
       - MONGODB_EXTRA_FLAGS=--wiredTigerCacheSizeGB=2
-      - MONGODB_DATABASE=rsbase
+      - MONGODB_USERNAME=my_user
+      - MONGODB_PASSWORD=password123
+      - MONGODB_DATABASE=my_database
     networks: 
       - aisnet-backend
     ports: 

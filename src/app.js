@@ -17,22 +17,22 @@ const options = {
   definition: {
     openapi: '3.0.0',
     info: {
-      title: 'RS Position Tracker', // Title (required)
-      version: '1.0.0' // Version (required)
+      title: 'RS Position Tracker',
+      version: '1.0.0'
     }
   },
-  // Path to the API docs
   apis: ['src/routes/api-router.js']
 }
 
 // Initialize swagger-jsdoc -> returns validated swagger spec in json format
 const swaggerSpec = swaggerJsDoc(options)
-console.log(swaggerSpec)
+
 // init mongoose default connection
 mongoose.Promise = global.Promise
-
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env
+const uri = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
 mongoose
-  .connect(process.env.DB_URI)
+  .connect(uri)
   .then(conn => {
     console.log(chalk.green('Connection to database established.'))
   })

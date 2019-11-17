@@ -6,6 +6,7 @@ process.env.LOG_LEVEL = process.env.LOG_LEVEL || 'error'
 process.env.ENABLE_AIS_FETCHER = process.env.ENABLE_AIS_FETCHER || 'false'
 process.env.ENABLE_API = process.env.ENABLE_API || 'false'
 process.env.DB_PORT = process.env.DB_PORT || 27017
+process.env.DB_NAME = process.env.DB_NAME || 'rsbase'
 
 if (!process.env.DB_HOST) {
   console.error('error:', 'DB_HOST is not set')
