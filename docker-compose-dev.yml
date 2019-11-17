@@ -18,8 +18,7 @@ services:
     volumes:
       - ./src:/app/src
     restart: on-failure
-    #command: [ "node_modules/nodemon/bin/nodemon.js", "src/app.js"]
-    command: [ "node", "src/app.js"]
+    command: [ "node_modules/nodemon/bin/nodemon.js", "src/app.js"]
   mongodb-service:
     image: bitnami/mongodb
     environment:
