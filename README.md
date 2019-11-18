@@ -14,15 +14,14 @@ Specify at least one:
 ## MANDATORY ENVRONMENTS VARIABLES
 
 * AIS_DATA_URL (default: <not set>)
-* DB_HOST (default: <not set>)
+* DB_URI (default: <not set>)
 * DB_USER (defualt: <not set>)
 * DB_PASSWORD (default <not set>)
-* DB_NAME (default <not set>)
 
 ## Examples:
 
 ```
-docker run kenguru33/rs-position-tracker -e DB_HOST=mongodb://mongodb/mydb:27017 -e DB_USER=dbuser -e DB_PASSWORD=pass -e DB_NAME=positions -e AIS_DATA_URL=https://ais.rs.no/aktive_pos.json -e ENABLE_API=true 
+docker run kenguru33/rs-position-tracker -e DB_URI=mongodb://mongodb/mydb:27017/positions -e DB_USER=dbuser -e DB_PASSWORD=pass -e AIS_DATA_URL=https://ais.rs.no/aktive_pos.json -e ENABLE_API=true 
 ```
 
 ### docker-compose example:

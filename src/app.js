@@ -10,30 +10,21 @@ const apiRouter = require('./routes/api-router')
 const mongoose = require('mongoose')
 const morgan = require('morgan')
 
-const swaggerJsDoc = require('swagger-jsdoc')
+const swaggerSpec = require('./docs/swagger-spec')
 const swaggerUi = require('swagger-ui-express')
-
-const options = {
-  definition: {
-    openapi: '3.0.0',
-    info: {
-      title: 'RS Position Tracker',
-      version: '1.0.0'
-    }
-  },
-  apis: ['src/routes/api-router.js']
-}
-
-// Initialize swagger-jsdoc -> returns validated swagger spec in json format
-const swaggerSpec = swaggerJsDoc(options)
 
 // init mongoose default connection
 mongoose.Promise = global.Promise
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env
-const uri = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
+const { DB_USER, DB_PASSWORD, DB_URI } = process.env
+const connOptions = {
+  user: DB_USER,
+  pass: DB_PASSWORD,
+  useNewUrlParser: true
+}
 mongoose
-  .connect(uri, { useMongoClient: true })
-  .then(conn => {
+  .connect(DB_URI,
+    connOptions
+  ).then(conn => {
     console.log(chalk.green('Connection to database established.'))
   })
   .catch(err => {
@@ -79,11 +70,6 @@ if (process.env.ENABLE_API) {
 
   app.use('/api', apiRouter)
 
-  // serve swagger
-  app.get('/swagger.json', function (req, res) {
-    res.setHeader('Content-Type', 'application/json')
-    res.send(swaggerSpec)
-  })
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec))
 
   app.use('/', express.static(path.join(__dirname, '/public')))
