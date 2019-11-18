@@ -32,7 +32,7 @@ mongoose.Promise = global.Promise
 const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env
 const uri = `mongodb://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`
 mongoose
-  .connect(uri)
+  .connect(uri, { useMongoClient: true })
   .then(conn => {
     console.log(chalk.green('Connection to database established.'))
   })
