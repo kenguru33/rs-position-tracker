@@ -19,7 +19,8 @@ const { DB_USER, DB_PASSWORD, DB_URI } = process.env
 const connOptions = {
   user: DB_USER,
   pass: DB_PASSWORD,
-  useNewUrlParser: true
+  useNewUrlParser: true,
+  useUnifiedTopology: true
 }
 mongoose
   .connect(DB_URI,
